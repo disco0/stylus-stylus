@@ -1,22 +1,13 @@
-import stylus, {
-    RenderCallback,
+import { reduce as cond } from 'conditional-reduce'
+
+import {
     RendererClass,
-    Stylus,
     StylusPlugin,
     StylusPluginEntry
 } from './stylus'
 
-import { reduce as cond } from 'conditional-reduce'
-
 import {
-    extractMeta,
-    metaHasVariables,
-    metaRegex,
     parseSourceUserCSSMeta
-} from './usercssmeta'
-import type {
-    ParseResult,
-    ParseWithVariables
 } from './usercssmeta'
 
 import type * as StylusStatic from 'stylus';
