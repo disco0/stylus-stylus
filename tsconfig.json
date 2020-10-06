@@ -1,30 +1,48 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "commonjs",
-      "sourceMap": true,
-    },
-    "include": [
-      "test/**/*"
-    ]
-  },
+  "baseConfig": "@tsconfig/node12/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "declaration": true,
-    "declarationDir": "types",
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "strict": true
+    "esModuleInterop": true,
+    "strict": true,
+    // "checkJs": true,
+    // "allowJs": true,
+    "skipLibCheck": true,
+    "pretty": true,
+    "downlevelIteration": true,
+    "allowUmdGlobalAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "listEmittedFiles": true,
+    "typeRoots": [
+        "./@types",
+        "node_modules/@types",
+    ],
+    "module": "commonjs",
+    "target": "es6",
+
+    "outDir": "lib",
+    "sourceMap": true,
+
+    // "declaration": true,
+    // "declarationDir": "types",
   },
   "include": [
-    "@types/**/*",
-    "src/**/*"
+      "./@types",
+      "./@types/globals.d.ts",
+      "./@types/highlight.js-console/index.d.ts",
+      // "@types/, "src/globals.d.ts"**/*",
+      "./src/globals.d.ts",
+      "src",
   ],
   "exclude": [
-    "node_modules"
+      "./webpack.config.ts",
+      "./webpack.config.js",
+      "./rollup.config.ts",
+      "./rollup.config.js",
+      "node_modules",
+      "./types",
+      "./test/*.js",
   ]
 }

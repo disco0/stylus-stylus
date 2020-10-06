@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "TODO",
+  "name": "stylus-stylus",
   "umd:name": "TODO",
   "repository": "TODO_USERNAME/TODO_REPO",
   "description": "TODO_MODULE_DESCRIPTION",
@@ -22,9 +22,15 @@
     "node": ">= 10"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run build:source && npm run build:tests",
+    "build:watch": "tsc --pretty --project ./tsconfig.json --project",
+    "build:source": "tsc --pretty --project ./tsconfig.json",
+    "build:source:watch": "tsc --pretty --watch --project ./tsconfig.json",
+    "build:tests": "tsc --project ./src/test/tsconfig.tests.json",
+    "build:tests:watch": "tsc --pretty --watch --project ./src/test/tsconfig.tests.json",
     "prepublishOnly": "npm run build",
-    "test": "uvu -r ts-node/register test"
+    "tests": "node ./test",
+    "pretests": "npm run build:tests"
   },
   "keywords": [
     "TODO",
@@ -32,12 +38,24 @@
     "keywords"
   ],
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "8.1.0",
-    "rollup": "2.21.0",
-    "rollup-plugin-terser": "6.1.0",
-    "rollup-plugin-typescript2": "0.27.1",
+    "@tsconfig/node12": "^1.0.7",
+    "@types/highlightjs": "^9.12.0",
+    "highlight.js-console": "^1.0.0",
+    "rich-logger-decorator": "^4.0.0",
     "ts-node": "8.10.2",
-    "typescript": "3.9.6",
+    "tsdef": "0.0.14",
+    "typescript": "^4.1.0-dev.20200902",
     "uvu": "0.0.19"
+  },
+  "dependencies": {
+    "@types/stylus": "^0.48.33",
+    "byots": "^4.1.0-dev.20201004.15.23",
+    "conditional-reduce": "^1.2.0",
+    "stylus": "^0.54.8",
+    "usercss-meta": "^0.9.0"
+  },
+  "$comment": {
+    "file:usercss-meta": "file:../../Dropbox/dev/git/stylus/usercss-meta/usercss-meta.disco0.dts-branch",
+    "usercss-meta": "git+https://github.com/disco0/usercss-meta.git#@types"
   }
 }
