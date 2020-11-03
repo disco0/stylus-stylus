@@ -1,47 +1,59 @@
 {
   "version": "0.0.0",
   "name": "stylus-stylus",
-  "umd:name": "TODO",
-  "repository": "TODO_USERNAME/TODO_REPO",
-  "description": "TODO_MODULE_DESCRIPTION",
-  "unpkg": "dist/index.min.js",
-  "module": "dist/index.mjs",
-  "main": "dist/index.js",
+  "umd:name": "stylus-stylus",
+  "repository": "https://www.github.com/disco0/stylus-stylus",
+  "description": "Stylus plugin for compiling Stylus source files that use usercss-meta declarations",
+  "main": "lib/index.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "author": {
-    "name": "TODO_YOUR_NAME",
-    "email": "YOUR_EMAIL@TODO.com",
-    "url": "https://TODO_WEBSITE.com"
+    "name": "disk0"
+  },
+  "bin": {
+    "stylus-stylus": "./bin/stylus-stylus.js",
+    "stylus-stylus-module": "./bin/stylus-stylus-module.js",
+    "stylus-stylus-debug": "./bin/stylus-stylus-debug.js"
   },
   "files": [
-    "dist",
+    "lib",
+    "bin",
     "types"
   ],
   "engines": {
     "node": ">= 10"
   },
   "scripts": {
-    "build": "npm run build:source && npm run build:tests",
+    "build": "yarn build:all",
+    "prebuild": "yarn tests:files:update",
+    "build:all": "tsc --project ./tsconfig.lib.json",
     "build:watch": "tsc --pretty --project ./tsconfig.json --project",
     "build:source": "tsc --pretty --project ./tsconfig.json",
     "build:source:watch": "tsc --pretty --watch --project ./tsconfig.json",
-    "build:tests": "tsc --project ./src/test/tsconfig.tests.json",
-    "build:tests:watch": "tsc --pretty --watch --project ./src/test/tsconfig.tests.json",
+    "build:tests": "tsc --project ./tsconfig.tests.json",
+    "build:tests:watch": "tsc --pretty --watch --project ./tsconfig.tests.json",
+    "build:types": "tsc --project ./tsconfig.types.json",
+    "build:types:watch": "tsc --watch --project ./tsconfig.types.json",
     "prepublishOnly": "npm run build",
+    "browserify": "./build/browserify",
+    "clean": "yarn clean:tests && yarn clean:lib",
+    "clean:tests": "shx rm -rf ./test",
+    "clean:lib": "shx rm -rf ./lib",
     "tests": "node ./test",
-    "pretests": "npm run build:tests"
+    "tests:clean": "yarn clean:tests && yarn tests",
+    "tests:files:update": "mkdir --verbose --parents ./test/testFiles && cp -uvr ./src/test/testFiles ./test/",
+    "tests:ts-node": "ts-node --project ./tsconfig.json --prefer-ts-exts --pretty src/test",
+    "pretests": "yarn tests:files:update && yarn run build"
   },
-  "keywords": [
-    "TODO",
-    "module",
-    "keywords"
-  ],
+  "keywords": [],
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
+    "@types/debug": "^4.1.5",
     "@types/highlightjs": "^9.12.0",
     "highlight.js-console": "^1.0.0",
     "rich-logger-decorator": "^4.0.0",
+    "shelljs": "^0.8.4",
+    "shx": "^0.3.2",
     "ts-node": "8.10.2",
     "tsdef": "0.0.14",
     "typescript": "^4.1.0-dev.20200902",
@@ -49,12 +61,13 @@
   },
   "dependencies": {
     "@types/stylus": "^0.48.33",
-    "byots": "^4.1.0-dev.20201004.15.23",
-    "conditional-reduce": "^1.2.0",
+    "debug": "^4.2.0",
     "stylus": "^0.54.8",
     "usercss-meta": "^0.9.0"
   },
   "$comment": {
+    "unpkg": "lib/index.min.js",
+    "module": "lib/index.mjs",
     "file:usercss-meta": "file:../../Dropbox/dev/git/stylus/usercss-meta/usercss-meta.disco0.dts-branch",
     "usercss-meta": "git+https://github.com/disco0/usercss-meta.git#@types"
   }
