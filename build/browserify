@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+local NODE_PATH="$(npm root -g)"
+
+if [[ -z "${NODE_PATH}" ]]
+then
+    builtin print -Pu2 '%F{3Failed to resolve global node module path.';
+    return 1
+fi
+
+NODE_PATH="${NODE_PATH}" ts-node ./ts/browserify/index "${(@)^@}"
