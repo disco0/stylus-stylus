@@ -1,11 +1,15 @@
 node_modules
+
 .DS_Store
 *-lock.*
 *.lock
 *.log
 
-/dist
-/types
-/test
+lib
+types
+test
+dist
+
+.nvmrc
 
 .vscode
