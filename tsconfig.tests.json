@@ -1,0 +1,38 @@
+{
+    "baseConfig": "@tsconfig/node12/tsconfig.json",
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "strict": true,
+      "noImplicitAny": true,
+      "downlevelIteration": true,
+      "allowUmdGlobalAccess": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "strictNullChecks": true,
+
+      "declaration": false,
+      "rootDirs":
+      [
+          "./src/tests",
+      ],
+
+      "sourceMap": false,
+      "forceConsistentCasingInFileNames": true,
+
+      "listEmittedFiles": true,
+
+      "checkJs": true,
+      "allowJs": true,
+      "pretty": true,
+
+      "outDir": "./test",
+    },
+
+    "include": [
+        "./src/globals.d.ts",
+        "./@types/usercss-meta/index.d.ts",
+        "./src/test",
+    ],
+    "exclude": [
+    ]
+}

@@ -3,5 +3,9 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "types",
+    "emitDeclarationOnly": true,
+    "bundledPackageName": "stylus-stylus",
+
+    "declarationMap": true,
   }
 }
