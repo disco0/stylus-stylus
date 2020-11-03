@@ -1,16 +1,14 @@
 //#region Imports
 
-// Packages
-import chalk from 'chalk'
-const hex = chalk.hex.bind(chalk)
-const underline = chalk.underline.bind(chalk)
+import chalk from 'chalk';
 
-import * as userCssMeta  from 'usercss-meta'
+import * as userCssMeta  from 'usercss-meta';
 import type { UserCSSMetaParserResult } from 'usercss-meta';
+
+import { usercssmeta as debug } from './debug'
 
 //#endregion Imports
 
-//#region
 export const metaRegex: RegExp = /^(\/\* ==UserStyle==[\s\S\n]+?^==\/UserStyle== \*\/)/mg;
 
 export function extractMeta(source: string)
@@ -18,10 +16,10 @@ export function extractMeta(source: string)
     const parsed = (source.match(metaRegex) || [''])[0];
     if(!parsed || parsed.length === 0)
     {
-        console.log(chalk.ansi256(208)`Failed to match usercssmeta with capture regex.`)
+        debug(chalk.ansi256(208)`Failed to match usercssmeta with capture regex.`)
         return '';
     }
-    console.log(chalk.blue`Extracted meta:\n` + chalk.gray(parsed));
+    debug(chalk.blue`Extracted meta:\n` + chalk.gray(parsed));
 
     return parsed;
 }
@@ -33,7 +31,7 @@ export function parseSourceUserCSSMeta(source: string, allowErrors: boolean = tr
     let extracted = extractMeta(source);
     if(extracted.length === 0)
     {
-        console.warn(chalk.ansi256(209)`Failed to extract meta, exiting parse function.`)
+        debug(chalk.ansi256(209)`Failed to extract meta, exiting parse function.`)
         return
     }
 
@@ -42,26 +40,20 @@ export function parseSourceUserCSSMeta(source: string, allowErrors: boolean = tr
     if(typeof parsed === 'object')
         return parsed;
 
-    // Move to wrapper function for loading file directly
-    // console.warn(hex('#C90')`Failed parsing${
-    //         typeof sourceArg === 'string'
-    //             ? ' input source'
-    //             : underline`${sourceArg.path}`}.`)
     return;
-}
-
-export interface ParseWithVariables extends ParsedUserCSSMeta
-{
-    metadata: ParsedUserCSSMeta['metadata'] & { vars: {[key: string]: UserVariable} }
 }
 
 export function metaHasVariables(parsed: ParsedUserCSSMeta): parsed is ParseWithVariables
 {
     return !!(parsed?.metadata?.vars ?? false)
-        // throw new Error('usercss-meta parsed has no variables.')
 }
 
 //#region Declarations
+
+export interface ParseWithVariables extends ParsedUserCSSMeta
+{
+    metadata: ParsedUserCSSMeta['metadata'] & { vars: {[key: string]: UserVariable} }
+}
 
 export type ParsedUserCSSMeta =
     typeof UserCSSMetaParserResult

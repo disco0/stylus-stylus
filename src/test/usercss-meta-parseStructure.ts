@@ -1,21 +1,24 @@
-///<reference path="../../@types/usercss-meta/index.d.ts"/>
+///<reference path="../@types/usercss-meta/index.d.ts"/>
 ///<reference path="../globals.d.ts"/>
+
+//#region Imports
+
 import chalk from 'chalk'
 const hex = chalk.hex.bind(chalk)
 const underline = chalk.underline.bind(chalk)
 
 import * as userCssMeta  from 'usercss-meta'
-import type { UserCSSMetaParserResult } from 'usercss-meta';
 
-import type { Pathent, TestSource } from '../lib/fs';
+import type { TestSource } from '../lib/fs';
 import type {
     ParsedUserCSSMeta,
-    UserCssType,
     UserVariable,
 } from '../lib/usercssmeta';
 import { metaHasVariables } from '../lib/usercssmeta';
 
 import { sourceFiles } from './source-tests-loader';
+
+//#endregion Imports
 
 export const metaRegex: RegExp = /^(\/\* ==UserStyle==[\s\S\n]+?^==\/UserStyle== \*\/)/mg
 export function extractMeta(source: string)
@@ -62,6 +65,7 @@ export interface ParseWithVariables extends ParsedUserCSSMeta
 }
 
 //#region Display Meta
+
 const userVarPropsToPrint = [ 'type', 'label', 'default', 'units' ] as const;
 const longestVarPropLength =
     [...userVarPropsToPrint.values()]
@@ -94,7 +98,6 @@ export function printUserVariable(name: string, value: UserVariable): void
                     ?  value['units']: ''
             ].join('')
         )
-
     }
 }
 
@@ -126,7 +129,6 @@ export function printParsedVariables(result: ParsedUserCSSMeta)
     {
         console.log(hex('#04F')` - ${k}:`)
         printUserVariable(k, v)
-        // console.dir(v);
     })
 }
 
@@ -164,7 +166,8 @@ export function displaySourceParseStructure(sourceFile: TestSource | {name: stri
 export function parseTestFiles(files: TestSource[]): void;
 export function parseTestFiles(files: {name: string, path: string, source: string}[] = sourceFiles): void
 {
-    sourceFiles.forEach(file => {
+    files.forEach(file =>
+    {
         console.log(chalk.ansi256(32)`Parsing file: ${chalk.ansi256(32).underline`${file.path}`}`)
         displaySourceParseStructure(file)
     })

@@ -2,8 +2,6 @@
 
 // Packages
 import Stylus = require('stylus');
-import { suite, test } from 'uvu';
-import * as assert from 'uvu/assert';
 import c = require('chalk');
 
 // Local
@@ -19,7 +17,8 @@ import {
 } from './usercss-meta-parseStructure';
 import { sourceFiles } from './source-tests-loader';
 import { sourceFiles as sourceFileMocks} from './ts-tests';
-// import { logStyledCss } from './formatCss';
+import { logStyledCss } from './formatCss';
+logStyledCss.useHighlightJs = true
 
 //#endregion Imports
 
@@ -27,8 +26,10 @@ import { sourceFiles as sourceFileMocks} from './ts-tests';
 
 const userCSSMeta =
 {
-    parse: {
-        testOptions: {
+    parse:
+    {
+        testOptions:
+        {
             allowErrors: true
         } as object
     }
