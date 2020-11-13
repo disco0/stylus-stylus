@@ -5,10 +5,10 @@ node_modules
 *.lock
 *.log
 
-lib/
-types/
-test/
-dist/
+/lib
+/types
+/test
+/dist
 
 .nvmrc
 
