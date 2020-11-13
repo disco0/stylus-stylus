@@ -5,10 +5,11 @@
   "include": [
       // "@types/, "src/globals.d.ts"**/*",
       "./src/globals.d.ts",
-      "./src",
+      "./src/**/*.ts",
   ],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
+    "preserveWatchOutput": true,
     "moduleResolution": "node",
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -35,8 +36,8 @@
     "outDir": "./",
     "sourceMap": true,
 
-    // "declaration": true,
-    // "declarationDir": "types",
+    "declaration": true,
+    "declarationDir": "types",
   },
   "exclude": [
       "./webpack.config.ts",

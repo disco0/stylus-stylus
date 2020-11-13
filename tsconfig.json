@@ -16,6 +16,7 @@
         "listEmittedFiles": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "bundledPackageName": "stylus-stylus",
         "typeRoots":
         [
             "src/@types",
