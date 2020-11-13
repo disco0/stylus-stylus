@@ -8,10 +8,9 @@
 
 ### build
 
-Builds your module for distribution in multiple formats (ESM, CommonJS, and UMD).
-
 ```sh
 $ npm run build
+$ yarn run build
 ```
 
 ### test
