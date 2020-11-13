@@ -1,7 +1,7 @@
 //#region Imports
 
 import {
-    RendererClass,
+    Renderer,
     StylusPlugin,
     StylusPluginEntry
 } from './stylus'
@@ -18,11 +18,12 @@ import { plugin as debug } from './debug'
 //#endregion Imports
 
 const entry: StylusPluginEntry =
-function entry(options: PluginOptions = {})
+function entry(options: PluginOptions = {}) // : (renderer: Renderer) => any
 {
-    return function(this: RendererClass, stylus: RendererClass)
+    let config = options;
+    return function(this: Renderer)
     {
-        const source = stylus.str;
+        const source = this.str;
 
         if(!source || source.length === 0)
             return;
@@ -36,7 +37,7 @@ function entry(options: PluginOptions = {})
         else
         {
             debug('Passing stylus render instance to loader');
-            loadParsedVariables(parsed, stylus);
+            loadParsedVariables(parsed, this);
         }
     }
 }
@@ -44,7 +45,7 @@ function entry(options: PluginOptions = {})
 Object.assign(entry, {
     path:     __dirname,
     version: require(__dirname + '/../package.json').version
-});
+} );
 
 export = module.exports = entry;
 
