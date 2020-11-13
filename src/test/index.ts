@@ -5,7 +5,7 @@ import Stylus = require('stylus');
 import c = require('chalk');
 
 // Local
-import type { RendererClass } from '../lib/stylus';
+import type { Renderer } from '../lib/stylus';
 import type { ParseWithVariables, UserVariable } from '../lib/usercssmeta';
 
 // Local - Tests
@@ -50,7 +50,7 @@ function parseAndPrintMockFiles()
 //#region    TODO: Move to correct module
 
 const loadParsedAsRaw = true
-function loadParsedVariables(vars: ParseWithVariables, stylus: RendererClass): RendererClass
+function loadParsedVariables(vars: ParseWithVariables, stylus: Renderer): Renderer
 {
     for(let [name, meta] of Object.entries(vars.metadata.vars) as [string, UserVariable][])
     {
