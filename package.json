@@ -25,25 +25,16 @@
   },
   "scripts": {
     "build": "yarn build:all",
-    "prebuild": "yarn tests:files:update",
     "build:all": "tsc --project ./tsconfig.lib.json",
     "build:watch": "tsc --pretty --project ./tsconfig.lib.json --watch",
     "build:source": "tsc --pretty --project ./tsconfig.json",
     "build:source:watch": "tsc --pretty --watch --project ./tsconfig.json",
-    "build:tests": "tsc --project ./tsconfig.tests.json",
-    "build:tests:watch": "tsc --pretty --watch --project ./tsconfig.tests.json",
     "build:types": "tsc --project ./tsconfig.types.json",
     "build:types:watch": "tsc --watch --project ./tsconfig.types.json",
     "prepublishOnly": "npm run build",
     "browserify": "ts-node ./build/ts/browserify/index.ts",
-    "clean": "yarn clean:tests && yarn clean:lib",
-    "clean:tests": "shx rm -rf ./test",
-    "clean:lib": "shx rm -rf ./lib",
-    "tests": "node ./test",
-    "tests:clean": "yarn clean:tests && yarn tests",
-    "tests:files:update": "mkdir --verbose --parents ./test/testFiles && cp -uvr ./src/test/testFiles ./test/",
-    "tests:ts-node": "ts-node --project ./tsconfig.json --prefer-ts-exts --pretty src/test",
-    "pretests": "yarn tests:files:update && yarn run build"
+    "clean": "yarn clean:lib",
+    "clean:lib": "shx rm -rf ./lib"
   },
   "keywords": [],
   "devDependencies": {
