@@ -5,7 +5,7 @@
   "repository": "https://www.github.com/disco0/stylus-stylus",
   "description": "Stylus plugin for compiling Stylus source files that use usercss-meta declarations",
   "main": "lib/index.js",
-  "types": "types/index.d.ts",
+  "types": "types/lib/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "disk0"
@@ -27,7 +27,7 @@
     "build": "yarn build:all",
     "prebuild": "yarn tests:files:update",
     "build:all": "tsc --project ./tsconfig.lib.json",
-    "build:watch": "tsc --pretty --project ./tsconfig.json --project",
+    "build:watch": "tsc --pretty --project ./tsconfig.lib.json --watch",
     "build:source": "tsc --pretty --project ./tsconfig.json",
     "build:source:watch": "tsc --pretty --watch --project ./tsconfig.json",
     "build:tests": "tsc --project ./tsconfig.tests.json",
@@ -35,7 +35,7 @@
     "build:types": "tsc --project ./tsconfig.types.json",
     "build:types:watch": "tsc --watch --project ./tsconfig.types.json",
     "prepublishOnly": "npm run build",
-    "browserify": "./build/browserify",
+    "browserify": "ts-node ./build/ts/browserify/index.ts",
     "clean": "yarn clean:tests && yarn clean:lib",
     "clean:tests": "shx rm -rf ./test",
     "clean:lib": "shx rm -rf ./lib",
@@ -48,19 +48,21 @@
   "keywords": [],
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
+    "@types/browserify": "^12.0.36",
     "@types/debug": "^4.1.5",
     "@types/highlightjs": "^9.12.0",
+    "@types/stylus": "^0.48.33",
+    "browserify": "^17.0.0",
     "highlight.js-console": "^1.0.0",
+    "npm-dts": "^1.3.4",
     "rich-logger-decorator": "^4.0.0",
     "shelljs": "^0.8.4",
     "shx": "^0.3.2",
-    "ts-node": "8.10.2",
+    "tinyify": "^3.0.0",
     "tsdef": "0.0.14",
-    "typescript": "^4.1.0-dev.20200902",
     "uvu": "0.0.19"
   },
   "dependencies": {
-    "@types/stylus": "^0.48.33",
     "debug": "^4.2.0",
     "stylus": "^0.54.8",
     "usercss-meta": "^0.9.0"
