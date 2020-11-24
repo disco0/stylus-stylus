@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "name": "stylus-stylus",
   "umd:name": "stylus-stylus",
   "repository": "https://www.github.com/disco0/stylus-stylus",
@@ -12,8 +12,7 @@
   },
   "bin": {
     "stylus-stylus": "./bin/stylus-stylus.js",
-    "stylus-stylus-module": "./bin/stylus-stylus-module.js",
-    "stylus-stylus-debug": "./bin/stylus-stylus-debug.js"
+    "stylus-stylus-module": "./bin/stylus-stylus-module.js"
   },
   "files": [
     "lib",
@@ -36,7 +35,7 @@
     "clean": "yarn clean:lib",
     "clean:lib": "shx rm -rf ./lib"
   },
-  "keywords": [],
+  "keywords": [ "stylus", "plugin", "usercss" ],
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
     "@types/browserify": "^12.0.36",
@@ -57,11 +56,5 @@
     "debug": "^4.2.0",
     "stylus": "^0.54.8",
     "usercss-meta": "^0.9.0"
-  },
-  "$comment": {
-    "unpkg": "lib/index.min.js",
-    "module": "lib/index.mjs",
-    "file:usercss-meta": "file:../../Dropbox/dev/git/stylus/usercss-meta/usercss-meta.disco0.dts-branch",
-    "usercss-meta": "git+https://github.com/disco0/usercss-meta.git#@types"
   }
 }
