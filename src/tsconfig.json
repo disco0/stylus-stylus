@@ -1,0 +1,46 @@
+{
+
+    // Optional
+    "extends": "@tsconfig/node12/tsconfig.json",
+    "include":
+    [
+        "globals.d.ts",
+        "lib/**/*.ts",
+    ],
+    "exclude": [],
+    "compilerOptions":
+    {
+        "outDir": "..",
+        // "baseUrl": ".",
+        // "rootDir": ".",
+
+        "composite": true,
+
+        "declaration": true,
+        "declarationDir": "../types",
+
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
+        "strict": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+
+        "skipLibCheck": true,
+
+        "downlevelIteration": true,
+
+        "pretty": true,
+        "listEmittedFiles": true,
+
+        "typeRoots":
+        [
+            "../node_modules/@types"
+        ]
+    },
+}
+
