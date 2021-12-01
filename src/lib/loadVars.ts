@@ -1,7 +1,5 @@
 //#region Imports
 
-import c from 'chalk'
-
 import Stylus from './stylus';
 import type { Renderer } from './stylus'
 import type {
@@ -28,7 +26,7 @@ export function loadParsedVariables(vars: ParseWithVariables, stylus: Renderer):
         {
             if(meta.units)
             {
-                debug(`Defining variable ${c.ansi256(32).bold(name)} with value ${c.hex('#D07').bold(meta.default) + c.hex('#00F')(meta.units)}`);
+                debug(`Defining variable ${name} with value ${meta.default}${meta.units}`);
 
                 const value = new Nodes.Unit(Number(meta.default), meta.units);
                 debug(`Created node: %o`, value);
@@ -36,7 +34,7 @@ export function loadParsedVariables(vars: ParseWithVariables, stylus: Renderer):
             }
             else
             {
-                debug(`Defining variable ${c.ansi256(32).bold(name)} with value ${c.hex('#D07').bold(meta.default)}`);
+                debug(`Defining variable ${name} with value ${meta.default}`);
 
                 const value = new Nodes.Unit(Number(meta.default), '');
                 debug(`Created node: %o`, value);
@@ -45,7 +43,7 @@ export function loadParsedVariables(vars: ParseWithVariables, stylus: Renderer):
         }
         else
         {
-            debug(`Defining variable with ${c.ansi256(32).bold(name)} with value ${c.hex('#D07').bold(meta.default)}`)
+            debug(`Defining variable with ${name} with value ${meta.default}`)
 
             stylus.define(name, meta.default, loadParsedAsRaw)
         }

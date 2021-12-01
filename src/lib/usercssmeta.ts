@@ -1,6 +1,6 @@
 //#region Imports
 
-import chalk from 'chalk';
+import { } from './chalks';
 
 import * as userCssMeta  from 'usercss-meta';
 import type { UserCSSMetaParserResult } from 'usercss-meta';
@@ -16,10 +16,10 @@ export function extractMeta(source: string)
     const parsed = (source.match(metaRegex) || [''])[0];
     if(!parsed || parsed.length === 0)
     {
-        debug(chalk.ansi256(208)`Failed to match usercssmeta with capture regex.`)
+        debug(`Failed to match usercssmeta with capture regex.`)
         return '';
     }
-    debug(chalk.blue`Extracted meta:\n` + chalk.gray(parsed));
+    debug(`Extracted meta:\n${parsed}`);
 
     return parsed;
 }
@@ -31,7 +31,7 @@ export function parseSourceUserCSSMeta(source: string, allowErrors: boolean = tr
     let extracted = extractMeta(source);
     if(extracted.length === 0)
     {
-        debug(chalk.ansi256(209)`Failed to extract meta, exiting parse function.`)
+        debug(`Failed to extract meta, exiting parse function.`)
         return
     }
 
