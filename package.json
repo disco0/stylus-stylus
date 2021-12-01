@@ -49,6 +49,7 @@
     "uvu": "0.5.0"
   },
   "dependencies": {
+    "chalk": "^4.1.1",
     "debug": "^4.3.1",
     "stylus": "github:disco0/stylus#dev",
     "usercss-meta": "^0.10.0"
